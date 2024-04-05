@@ -23,7 +23,7 @@ class FilmesController extends Controller
         $filmes = $data['results'];
 
         $totalFilmes = count($filmes);
-        $perPage = 5;
+        $perPage = 7;
         $currentPage = LengthAwarePaginator::resolveCurrentPage();
         $currentPageItems = array_slice($filmes, ($currentPage - 1) * $perPage, $perPage);
         $paginatedItems= new LengthAwarePaginator($currentPageItems, $totalFilmes, $perPage);
