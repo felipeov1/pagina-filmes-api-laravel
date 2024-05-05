@@ -27,28 +27,19 @@
     </section>
     <div class="containerCatalagoMovies">
         <div class="grid-container" id="grid-catalago">
-            @foreach ($filmes as $filme)
+            @foreach ($movie_data->results as $filme)
                 <div class="card" id="catalago" style="width: 18rem; margin-bottom:10px">
                     <div class="card-body">
-                        @if (isset($filme['primaryImage']) && isset($filme['primaryImage']['url']))
-                            <img src="{{ $filme['primaryImage']['url'] }}" alt="{{ $filme['titleText']['text'] }}">
-                        @else
-                            <img src="{{ asset('logo-filme.png') }}" alt="Imagem Padrão">
-                        @endif
-                        <h5 class="card-title">{{ $filme['titleText']['text'] }}</h5>
-                        @if (isset($filme['releaseDate']) && isset($filme['releaseDate']['year']))
-                            <p class="card-title">Ano: {{ $filme['releaseDate']['year'] }}</p>
-                        @else
-                            <p class="card-text"><b>Ano: sem informações</b></p>
-                        @endif
-                        <p class="card-text">{{ $filme['titleText']['text'] }}</p>
+                        <img src="{{ $filme->poster_path}}" alt="{{ $filme->title }}">
+                        <h5 class="card-title">{{ $filme->title }}</h5>
+                        <p class="card-title">Ano: {{ $filme->release_date }}</p>
                     </div>
                 </div>
             @endforeach
         </div>
     </div>
 
-    <div class="pagination">
-        {{ $filmes->links('vendor.pagination.bootstrap-4') }}
-    </div>
+    {{-- <div class="pagination">
+        {{ $movie_data->links('vendor.pagination.bootstrap-4') }}
+    </div> --}}
 </body>
